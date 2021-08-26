@@ -37,27 +37,51 @@
 
 
 #===================================== Exercicio 1.0 ===================================== +
-MEMBERS=("Danrlei Vieira da Silva de Souza" "Jean Carlos da Silva" "Jecé Xavier Pereira Neto" "Vagner Humberto Wentz")
+MEMBERS=(
+  "Danrlei Vieira da Silva de Souza"
+  "Jean Carlos da Silva"
+  "Jecé Xavier Pereira Neto"
+  "Vagner Humberto Wentz"
+)
 
-# echo "MEMBERS: ${MEMBERS[@]}"
+echo "MEMBERS: ${MEMBERS[@]}"
 
 #===================================== Exercicio 1.1 ===================================== +
-declare -a MEMBERS_ID
+#================= Jeito 1
+# declare -a MEMBERS_ID
 
-for ((i=0; i<${#MEMBERS[@]}; i++)); do
-  MEMBER_NO_WHITESPACE="$(echo -e "${MEMBERS[$i]}" | tr -d '[:space:]')"
-  # echo "MEMBER $i: ${MEMBER_NO_WHITESPACE}"
-  MEMBERS_ID+=("$MEMBER_NO_WHITESPACE")
-done
+# for ((i=0; i<${#MEMBERS[@]}; i++)); do
+#   MEMBER_NO_WHITESPACE="$(echo -e "${MEMBERS[$i]}" | tr -d '[:space:]')"
+#   # echo "MEMBER $i: ${MEMBER_NO_WHITESPACE}"
+#   MEMBERS_ID+=("$MEMBER_NO_WHITESPACE")
+# done
 
 # echo "MEMBERS_ID: ${MEMBERS_ID[@]}"
 
+#================= Jeito 2
+MEMBERS_ID=(
+  "1868870"
+  "1700731"
+  "1979990"
+  "1928180"
+)
+
+echo "MEMBERS_ID: ${MEMBERS_ID[@]}"
+
 #===================================== Exercicio 1.2 ===================================== +
+MEMBERS_COURSES=(
+  "Ciências da Computação - UTFPR/MD" 
+  "Ciências da Computação - UTFPR/SH" 
+  "Ciências da Computação - UTFPR/SH" 
+  "Ciências da Computação - UTFPR/MD"
+)
+
+echo "MEMBERS_COURSES: ${MEMBERS_COURSES[@]}"
 
 #===================================== Exercicio 1.3 ===================================== +
 CURRENT_DIRETORY=$(pwd)
 
-echo $CURRENT_DIRETORY
+echo "CURRENT_DIRETORY: $CURRENT_DIRETORY"
 
 #===================================== Exercicio 1.4 ===================================== +
 LIST_DIRECTORIES_ETC=$(ls -dtlr /etc/*/ | awk '{printf "%s,%s,%s,%s\r", $6, $7, $8, $9}')
