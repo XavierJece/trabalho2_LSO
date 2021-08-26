@@ -39,8 +39,18 @@
 #===================================== Exercicio 1.0 ===================================== +
 MEMBERS=("Danrlei Vieira da Silva de Souza" "Jean Carlos da Silva" "Jecé Xavier Pereira Neto" "Vagner Humberto Wentz")
 
+echo "MEMBERS: ${MEMBERS[@]}"
 
 #===================================== Exercicio 1.1 ===================================== +
+declare -a MEMBERS_ID
+
+for ((i=0; i<${#MEMBERS[@]}; i++)); do
+  MEMBER_NO_WHITESPACE="$(echo -e "${MEMBERS[$i]}" | tr -d '[:space:]')"
+  # echo "MEMBER $i: ${MEMBER_NO_WHITESPACE}"
+  MEMBERS_ID+=("$MEMBER_NO_WHITESPACE")
+done
+
+echo "MEMBERS_ID: ${MEMBERS_ID[@]}"
 
 #===================================== Exercicio 1.2 ===================================== +
 
