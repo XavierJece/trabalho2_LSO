@@ -7,6 +7,11 @@
 # DISCIPLINA = Laboratório de Sistemas Operacionais                                        |
 # TRABALHO AVALIATIVO - SHELL NÚMERO = 02                                                  |
 # PROFESSOR: Euclides Peres Farias Junior                                                  |
+# ALUNOS - Campus - RA                                                                     |
+#   Danrlei Vieira da Silva de Souza    - Medineira     -   1868870                        |
+#   Jean Carlos da Silva                - Santa Helena  -   1700731                        |
+#   Jecé Xavier Pereira Neto            - Santa Helena  -   1979990                        |
+#   Vagner Humberto Wentz               - Medineira     -   1928180                        |
 #                                                                                          |
 # Criar um Shell Script que faça o seguine:                                                |
 #                                                                                          |
@@ -31,5 +36,13 @@
 #                                                                                          |
 #     -------------------------------------------------------------------------------      |
 #      VALOR DO EXERCÍCIO = Nota até 2,0 (dois pontos)                                     |
-#     -------------------------------------------------------------------------------      +
+#     -------------------------------------------------------------------------------      |
+#==========================================================================================+
 
+
+
+#===================================== Exercicio 2.0 ===================================== +
+
+#===================================== Exercicio 2.1 ===================================== +
+
+#===================================== Exercicio 2.2 ===================================== +
