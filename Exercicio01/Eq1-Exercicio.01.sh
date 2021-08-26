@@ -37,6 +37,8 @@
 
 
 #===================================== Exercicio 1.0 ===================================== +
+MEMBERS=("Danrlei Vieira da Silva de Souza" "Jean Carlos da Silva" "Jecé Xavier Pereira Neto" "Vagner Humberto Wentz")
+
 
 #===================================== Exercicio 1.1 ===================================== +
 
