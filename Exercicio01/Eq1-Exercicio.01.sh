@@ -45,7 +45,7 @@ MEMBERS=(
 )
 
 MEMBERS_EMAIL=(
-  "danrleivieiradanrlei@gmail.com"
+  "danrlei_vieira@hotmail.com"
   "jeansilva@alunos.utfpr.edu.br"
   "jece@alunos.utfpr.edu.br"
   "wentz.vagner@gmail.com"
@@ -99,6 +99,11 @@ echo $LIST_DIRECTORIES_ETC > ./Base_Dados.csv
 
 #===================================== Exercicio 1.5 ===================================== +
 
+#================= Lista de Arquivos
+echo ""
+echo "+============================ Lista de Arquivos =======================+"
+LIST_FILES=$(ls -Ltrp /etc | grep -v /)
+echo "$LIST_FILES"
 
 #================= Fazendo Rodape
 echo ""
