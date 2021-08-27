@@ -105,6 +105,17 @@ echo "+============================ Lista de Arquivos =======================+"
 LIST_FILES=$(ls -Ltrp /etc | grep -v /)
 echo "$LIST_FILES"
 
+#================= Quantidade de Arquivos
+echo ""
+echo "+========================== Quantidade de Arquivos =======================+"
+
+QTD_FILES=$(ls -Ltrp /etc | grep -v / | wc -l)
+echo "Existem neste diretório $QTD_FILES Arquivos"
+
+#================= Quantidade de Arquivos com Extensão .conf
+QTD_FILES_CONF=$(ls -Ltrp /etc | grep '.conf$' | wc -l)
+echo "Existem neste diretório $QTD_FILES_CONF Arquivos com Extensão .conf"
+
 #================= Fazendo Rodape
 echo ""
 echo "+=================================== Rodape ==============================+"
