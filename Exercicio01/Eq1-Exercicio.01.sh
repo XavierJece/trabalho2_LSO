@@ -104,6 +104,6 @@ echo $LIST_DIRECTORIES_ETC > ./Base_Dados.csv
 echo ""
 echo "+=================================== Rodape ==============================+"
 for ((i=0; i<${#MEMBERS[@]}; i++)); do
-  echo "   ${MEMBERS[$i]}  -  ${MEMBERS_EMAIL[$i]}"
+  echo "   ${MEMBERS[$i]}  -  ${MEMBERS_EMAIL[$i]},"
 done
 echo "+=========================================================================+"
