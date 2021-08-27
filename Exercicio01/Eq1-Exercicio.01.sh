@@ -44,7 +44,16 @@ MEMBERS=(
   "Vagner Humberto Wentz"
 )
 
-echo "MEMBERS: ${MEMBERS[@]}"
+MEMBERS_EMAIL=(
+  "danrleivieiradanrlei@gmail.com"
+  "jeansilva@alunos.utfpr.edu.br"
+  "jece@alunos.utfpr.edu.br"
+  "wentz.vagner@gmail.com"
+)
+
+# echo "MEMBERS: ${MEMBERS[@]}"
+# echo "MEMBERS_EMAIL: ${MEMBERS_EMAIL[@]}"
+
 
 #===================================== Exercicio 1.1 ===================================== +
 #================= Jeito 1
@@ -66,7 +75,7 @@ MEMBERS_ID=(
   "1928180"
 )
 
-echo "MEMBERS_ID: ${MEMBERS_ID[@]}"
+# echo "MEMBERS_ID: ${MEMBERS_ID[@]}"
 
 #===================================== Exercicio 1.2 ===================================== +
 MEMBERS_COURSES=(
@@ -76,7 +85,7 @@ MEMBERS_COURSES=(
   "Ciências da Computação - UTFPR/MD"
 )
 
-echo "MEMBERS_COURSES: ${MEMBERS_COURSES[@]}"
+# echo "MEMBERS_COURSES: ${MEMBERS_COURSES[@]}"
 
 #===================================== Exercicio 1.3 ===================================== +
 CURRENT_DIRETORY=$(pwd)
@@ -89,3 +98,12 @@ echo $LIST_DIRECTORIES_ETC > ./Base_Dados.csv
 # echo $LIST_DIRECTORIES_ETC
 
 #===================================== Exercicio 1.5 ===================================== +
+
+
+#================= Fazendo Rodape
+echo ""
+echo "+=================================== Rodape ==============================+"
+for ((i=0; i<${#MEMBERS[@]}; i++)); do
+  echo "   ${MEMBERS[$i]}  -  ${MEMBERS_EMAIL[$i]}"
+done
+echo "+=========================================================================+"
