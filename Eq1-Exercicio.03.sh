@@ -35,47 +35,76 @@
 #     -------------------------------------------------------------------------------      |
 #==========================================================================================+
 #===================================== Exercicio 3.0 ===================================== +
-${MEMBERS} = @("Danrlei Vieira da Silva de Souza",
+MEMBERS=("Danrlei Vieira da Silva de Souza",
 	      "Jean Carlos da Silva",
               "Jecé Xavier Pereira Neto",
               "Vagner Humberto Wentz")
 
-echo $MEMBERS
+echo ${MEMBERS[@]}
 
 #===================================== Exercicio 3.1 ===================================== +
- ${ID_MEMBERS} = @("1868870 Danrlei Vieira da Silva de Souza", 
+ID_MEMBERS=("1868870 Danrlei Vieira da Silva de Souza", 
                    "1700731 Jean Carlos da Silva", 
                    "1979990 Jecé Xavier Pereira Neto",
                    "1928180 Vagner Humberto Wentz")
 
-ECHO $ID_MEMBERS
+echo ${ID_MEMBERS[@]}
 
 #===================================== Exercicio 3.2 ===================================== +
-$MEMBERS_COURSES = @("Ciência da Computação - UTFPR/MD", 
+MEMBERS_COURSES=("Ciência da Computação - UTFPR/MD", 
                      "Ciência da Computação - UTFPR/SH",
                      "Ciência da Computação - UTFPR/SH",
                      "Ciência da Computação - UTFPR/MD")
 
-ECHO $MEMBERS_COURSES
+echo ${MEMBERS_COURSES[@]}
 
 #===================================== Exercicio 3.3 ===================================== +
-$CURRENT_DIRETORY = $(PWD)
+CURRENT_DIRETORY=$(pwd)
 
-ECHO $CURRENT_DIRETORY
+echo $CURRENT_DIRETORY
 #===================================== Exercicio 3.4 ===================================== +
 
-Select-String -Path ".\Relatorio-Redes-Internet.txt" -Pattern "WhatsApp"> 'C:\EXERCICIO3\Relatorio-WhatsApp.csv'
+LIST_WHATSAPP=$(cat Relatorio-Redes-Internet.txt | grep whatsapp | awk '{printf "%s,%s,%s,%s,%s\r", $1, $3, $4, $8, $9}')
+echo $LIST_WHATSAPP > ./Relatorio-WhatsApp.csv
+
 
 #===================================== Exercicio 3.5 ===================================== +
 
-#Lendo um arquivo txt
-$Text = Get-Content -Path C:\EXERCICIO3\Relatorio-Redes-Internet.txt
+# Separando dados
+cat Relatorio-Redes-Internet.txt | egrep 'whatsapp.*seq [0-9]+' | sed 's/\.[0-9]\{6\}//g' | awk '{printf "%s\t%s\t%s\t%s\t%s\n", $1, $3, $5, $8, $9}' | sed 's/[ ,]//g' > separete_data.txt
 
-#Transformando as linhas do arquivo em um array 
-$Text.GetType() | Format-Table -AutoSize
+# portas
+cat separete_data.txt | egrep -oh '\.[0-9]+' | sed 's/[\.\:]//g' > doors.txt
 
-#Listando as linhas do arquivo
-foreach ($element in $Text) 
-{ 
-    $element
-}
+# pegando dados
+awk '{printf "%s\t%s\n", $4, $5}' separete_data.txt > seqs.txt
+awk '{print $5}' separete_data.txt | sed 's/\:/\t/' > seqsToSum.txt
+
+# merge dos dados
+awk '{printf "%s\t%s\t%s\n", $1, $2, $3}' separete_data.txt | sed 's/\.[0-9]\+\://g' > partial_data.txt
+paste partial_data.txt doors.txt > ending.txt
+paste ending.txt seqs.txt > Relatorio_Final_Exercicio03.txt
+
+# contatagem dos dados
+COUNT_1=0
+COUNT_2=0
+
+ACTIONS=`cat Relatorio_Final_Exercicio03.txt | wc -l`
+
+# add rodapé
+echo "-----------------------------------------------------" >> Relatorio_Final_Exercicio03.txt
+
+for i in $(awk '{print $1}' seqsToSum.txt); do COUNT_1=$((COUNT_1+1)); done
+for i in $(awk '{print $2}' seqsToSum.txt); do COUNT_2=$((COUNT_2+1)); done
+
+echo "Foram encontrados um total de: [ $COUNT_1 ]:[ $COUNT_2 ]" >> Relatorio_Final_Exercicio03.txt
+echo "Foram encontrados um total de [ $ACTIONS ] ações no WhatsApp." >> Relatorio_Final_Exercicio03.txt
+
+# limpando arquivos temporarios
+rm separete_data.txt doors.txt seqs.txt seqsToSum.txt partial_data.txt ending.txt
+
+# limpando variaveis 
+unset COUNT_1 COUNT_2 ACTIONS i
+
+# mostrando resultados
+cat Relatorio_Final_Exercicio03.txt
