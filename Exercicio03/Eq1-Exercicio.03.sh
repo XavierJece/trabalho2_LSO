@@ -34,17 +34,48 @@
 #      VALOR DO EXERCÍCIO = Nota até 2,0 (dois pontos)                                     |
 #     -------------------------------------------------------------------------------      |
 #==========================================================================================+
-
-
-
 #===================================== Exercicio 3.0 ===================================== +
+${MEMBERS} = @("Danrlei Vieira da Silva de Souza",
+	      "Jean Carlos da Silva",
+              "Jecé Xavier Pereira Neto",
+              "Vagner Humberto Wentz")
+
+echo $MEMBERS
 
 #===================================== Exercicio 3.1 ===================================== +
+ ${ID_MEMBERS} = @("1868870 Danrlei Vieira da Silva de Souza", 
+                   "1700731 Jean Carlos da Silva", 
+                   "1979990 Jecé Xavier Pereira Neto",
+                   "1928180 Vagner Humberto Wentz")
+
+ECHO $ID_MEMBERS
 
 #===================================== Exercicio 3.2 ===================================== +
+$MEMBERS_COURSES = @("Ciência da Computação - UTFPR/MD", 
+                     "Ciência da Computação - UTFPR/SH",
+                     "Ciência da Computação - UTFPR/SH",
+                     "Ciência da Computação - UTFPR/MD")
+
+ECHO $MEMBERS_COURSES
 
 #===================================== Exercicio 3.3 ===================================== +
+$CURRENT_DIRETORY = $(PWD)
 
+ECHO $CURRENT_DIRETORY
 #===================================== Exercicio 3.4 ===================================== +
 
+Select-String -Path ".\Relatorio-Redes-Internet.txt" -Pattern "WhatsApp"> 'C:\EXERCICIO3\Relatorio-WhatsApp.csv'
+
 #===================================== Exercicio 3.5 ===================================== +
+
+#Lendo um arquivo txt
+$Text = Get-Content -Path C:\EXERCICIO3\Relatorio-Redes-Internet.txt
+
+#Transformando as linhas do arquivo em um array 
+$Text.GetType() | Format-Table -AutoSize
+
+#Listando as linhas do arquivo
+foreach ($element in $Text) 
+{ 
+    $element
+}

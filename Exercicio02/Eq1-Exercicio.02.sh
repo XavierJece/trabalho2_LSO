@@ -42,7 +42,39 @@
 
 
 #===================================== Exercicio 2.0 ===================================== +
-
 #===================================== Exercicio 2.1 ===================================== +
-
 #===================================== Exercicio 2.2 ===================================== +
+
+# Busca o horario e o ip e realoca para o arquivo ips
+awk '{printf "%s \t%s\n", $1, $5}' Relatorio-Redes-Internet.txt | sed 's/\.[0-9]\{6\}//g' | egrep '([0-9]{1,3}\.){3}[0-9]{1,3}' | sed 's/\(\.\([a-z\-]\)\+\)*//g' | egrep  '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]*\:' | sed 's/\.[0-9]*\://g' > ips
+
+# Obtem as portas e move para o arquivos ports
+awk '{printf "%s\n" $5}' Relatorio-Redes-Internet.txt | sed 's/\.[0-9]\{6\}//g' | egrep '([0-9]{1,3}\.){3}[0-9]{1,3}' | sed 's/\(\.\([a-z\-]\)\+\)*//g' | egrep  '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]*\:' | egrep -oh '\.[0-9]*\:' > ports
+
+# Faz uma trativa do arquivo ports
+sed -i 's/[\.\:]//g' ports
+
+# Reorganiza a coluna ports junto com os ips
+paste ips ports > Relatorio-Final
+
+# Forma, como solicitado, para separar
+echo "--------" >> Relatorio-Final
+
+# Realiza a contagem de linhas 
+LINHAS=`cat Relatorio-Final | wc -l`
+IPS_UNICOS=`cat Relatorio-Final | egrep '([0-9]{1,3}\.){3}[0-9]{1,3}' | sort -k 2 --unique | wc -l`
+PORTAS_UNICAS=`cat Relatorio-Final | egrep '([0-9]{1,3}\.){3}[0-9]{1,3}' | sort -k 3 --unique | wc -l`
+
+# Insere valores no Relatorio-Final
+echo "Foram lidas ........................................:[ $LINHAS ] Linhas do arquivo" >> Relatorio-Final
+echo "Mostrar o Total de IPs apresentados no relatório ...:[ $IPS_UNICOS ] IPs lidos." >> Relatorio-Final
+echo "Mostrar a quantidade de portas apresentadas ........:[ $PORTAS_UNICAS ]" >> Relatorio-Final
+
+# Remoção dos arquivos 
+rm ips ports
+
+# Limpando variaveis que foram utilizadas
+unset LINHAS IPS_UNICOS PORTAS_UNICAS
+
+# Relatorio Final
+cat Relatorio-Final
