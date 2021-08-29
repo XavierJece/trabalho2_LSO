@@ -137,7 +137,13 @@ echo "+-------------------------------------------------------------------------
 echo -e "\e[1;32m|                                      $HOSTNAME                                                |\e[0m"
 echo "+--------------------------------------------------------------------------------------------+"
 echo "BogoMIPS"
-# https://www.blogporta80.com.br/2019/06/29/artigos-o-que-e-bogomips/
+
+# O que é bogomips?
+# BogoMips é uma invenção de Linus Torvalds que foi implementada na versão 0.99 do Linux Kernel e que é utilizada até os dias de hoje.
+# Trata-se de uma classificação que determina se seu processador está trabalhando em uma faixa adequada para o seu sistema.
+# Basicamente, sempre que o sistema é inicializado, uma medição é feita considerando o tempo que um loop leva até se tornar verdadeiro.
+# Para saber mais: https://www.blogporta80.com.br/2019/06/29/artigos-o-que-e-bogomips/
+
 cat /proc/cpuinfo | grep bogomips | awk '{print "\t" $3}'
 echo "Flags da CPU: $(cat /proc/cpuinfo | grep flags | head -n 1 | sed 's;^.*:\ ;;')"
 
